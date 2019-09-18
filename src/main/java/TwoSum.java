@@ -17,16 +17,17 @@ import java.util.Map;
  */
 public class TwoSum {
     public static int[] twoSum(int[] nums, int target) {
-        if (nums == null || nums.length == 0) {
+        if (nums == null || nums.length < 2) {
             return new int[]{-1, -1};
         }
         Map<Integer, Integer> map = new HashMap<>();
         int[] arr = new int[2];
         for (int i = 0; i < nums.length; i++) {
             //要求 a+b=target  所以，只要(target-当前遍历的i)所对应的key存在，就把索引复制给数组元素
-            if (map.containsKey(target - i)) {
-                arr[0] = map.get(i);
-                arr[1] = map.get(target - i);
+            //   {-10,7,19,15}    target=9
+            if (map.containsKey(target - nums[i])) {
+                arr[0] = map.get(target - nums[i]);
+                arr[1] = i;
                 break;
             }
             map.put(nums[i], i);
@@ -35,7 +36,7 @@ public class TwoSum {
     }
 
     public static void main(String[] args) {
-        int[] nums = {2, 7, 11, 15};
+        int[] nums = {-10, 7, 19, 15};
         int target = 9;
         int[] ints = twoSum(nums, target);
         System.out.println(Arrays.toString(ints));
