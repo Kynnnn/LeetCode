@@ -37,5 +37,6 @@ public class LengthOfLongestSubstring {
         String s = "pwwkew";
         int i = lengthOfLongestSubstring(s);
         System.out.println("i = " + i);
+
     }
 }
