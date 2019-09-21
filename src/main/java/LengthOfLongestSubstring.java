@@ -9,7 +9,6 @@ import java.util.Map;
  * @date 2019/9/18 10:01
  * 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
  * "pwwkew"   3
- * left = Math.max(left,map.get(s.charAt(i)) + 1);
  */
 public class LengthOfLongestSubstring {
     public static int lengthOfLongestSubstring(String s) {
@@ -18,15 +17,18 @@ public class LengthOfLongestSubstring {
             return 0;
         }
 
-        int j = 0;
+        int strLength = s.length();
+        int start = 0;
+        int maxLength = 0;
         Map<Character, Integer> map = new HashMap<>(8);
-        for (int i = 0; i < s.length(); i++) {
-            if (map.containsKey(s.charAt(i))) {
-                j=Math.max();
+        for (int end = 0; end < strLength; end++) {
+            if (map.containsKey(s.charAt(end))) {
+                start = Math.max(start, map.get(s.charAt(end)));
             }
+            map.put(s.charAt(end),end+1);
+            maxLength=Math.max(maxLength,end-start+1);
         }
-
-        return j;
+        return maxLength;
     }
 
     public static void main(String[] args) {
