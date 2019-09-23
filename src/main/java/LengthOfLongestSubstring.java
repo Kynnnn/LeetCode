@@ -17,16 +17,14 @@ public class LengthOfLongestSubstring {
             return 0;
         }
 
-        //start为子字符串其实索引
+        int strLength = s.length();
         int start = 0;
-        int length = s.length();
         int maxLength = 0;
-        Map<Character, Integer> map = new HashMap<>(16);
-        for (int end = 0; end < length; end++) {
+        Map<Character, Integer> map = new HashMap<>(8);
+        for (int end = 0; end < strLength; end++) {
             if (map.containsKey(s.charAt(end))) {
-                start=Math.max(start,map.get(s.charAt(end)));
+                start = Math.max(start, map.get(s.charAt(end)));
             }
-            //put时需要+1，因为 end 从0开始 end代表子字符串结束的索引
             map.put(s.charAt(end),end+1);
             maxLength=Math.max(maxLength,end-start+1);
         }
@@ -37,6 +35,5 @@ public class LengthOfLongestSubstring {
         String s = "pwwkew";
         int i = lengthOfLongestSubstring(s);
         System.out.println("i = " + i);
-
     }
 }
