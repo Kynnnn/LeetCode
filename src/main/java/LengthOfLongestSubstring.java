@@ -22,11 +22,16 @@ public class LengthOfLongestSubstring {
         int maxLength = 0;
         Map<Character, Integer> map = new HashMap<>(8);
         for (int end = 0; end < strLength; end++) {
+            //如果HashMap中存在相同字符，就把start的位置移动到该字符上
             if (map.containsKey(s.charAt(end))) {
                 start = Math.max(start, map.get(s.charAt(end)));
             }
-            map.put(s.charAt(end),end+1);
-            maxLength=Math.max(maxLength,end-start+1);
+            //如果当前字符在HashMap中不存在，就向HashMap中放入该字符
+            // key用该字符，value用当前索引+1
+            map.put(s.charAt(end), end + 1);
+            //最大不重复子字符串的长度就是 end-start+1
+            //+1是因为：当start和end都在0上时，end-start是0，但实际字符串长度是1
+            maxLength = Math.max(maxLength, end - start + 1);
         }
         return maxLength;
     }
