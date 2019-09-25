@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class LengthOfLongestSubstring {
     public static int lengthOfLongestSubstring(String s) {
-
+        //非空判断
         if (s == null || s.length() == 0) {
             return 0;
         }
@@ -22,7 +22,6 @@ public class LengthOfLongestSubstring {
         int maxLength = 0;
         Map<Character, Integer> map = new HashMap<>(8);
         for (int end = 0; end < strLength; end++) {
-            //如果HashMap中存在相同字符，就把start的位置移动到该字符上
             if (map.containsKey(s.charAt(end))) {
                 start = Math.max(start, map.get(s.charAt(end)));
             }
